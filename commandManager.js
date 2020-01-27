@@ -15,6 +15,10 @@ class CommandManager {
         this.prefix = "!";
     }
 
+    setPrefix(prefix) {
+        this.prefix = prefix;
+    }
+
 
 }
 
