@@ -8,6 +8,13 @@ class Command {
     }
 }
 
+class CommandManager {
+    constructor() {
+        this.commands = [];
+        this.specialPermissions = [];
+    }
+}
+
 //----------------COMMAND MANAGER----------------
 
 
