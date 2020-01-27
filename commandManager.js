@@ -12,7 +12,10 @@ class CommandManager {
     constructor() {
         this.commands = [];
         this.specialPermissions = [];
+        this.prefix = "!";
     }
+
+
 }
 
 //----------------COMMAND MANAGER----------------
