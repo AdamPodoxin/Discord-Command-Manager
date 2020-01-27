@@ -11,12 +11,16 @@ class Command {
 class CommandManager {
     constructor() {
         this.commands = [];
-        this.specialPermissions = [];
+        this.specialPermissionRoles = [];
         this.prefix = "!";
     }
 
     setPrefix(prefix) {
         this.prefix = prefix;
+    }
+
+    addSpecialPermissionRole(role) {
+        this.specialPermissionRoles.push(role);
     }
 
 
