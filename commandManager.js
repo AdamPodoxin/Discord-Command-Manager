@@ -23,6 +23,10 @@ class CommandManager {
         this.specialPermissionRoles.push(role);
     }
 
+    addCommand(name, requirePermissions, action) {
+        this.commands.push(new Command(name, requirePermissions, action));
+    }
+
 
 }
 
