@@ -74,6 +74,49 @@ class CommandManager {
 
 //-------------------EXAMPLE---------------------
 
+const { Client } = require("discord.js");
+const client = new Client();
 
+const TOKEN = "NjcxMDkwNjM5MjEwOTM4NDM1.Xi5NtQ.CMBTCdcGrJGkilzV-efGwB_D6LM" /*This is AdamBot's token*/;
+
+client.on("ready", () => {
+    console.log("AdamBot is online.");
+});
+
+const commandManager = new CommandManager();
+
+//By default, the prefix is '!'
+commandManager.setPrefix('.');
+
+commandManager.addSpecialPermissionRole("SpecialCommands");
+
+commandManager.addCommand("reply", false, message => {
+    const reply = message.content.substring(6, message.content.length);
+    message.reply(reply);
+});
+
+commandManager.addCommand("mute", true, message => {
+    const targetUserId = message.content.split(" ")[1];
+    const member = commandManager.getMemberByUserId(targetUserId.substring(3, targetUserId.length - 1), message.guild);
+
+    member.setMute(true)
+        .then(response => message.channel.send("Muted " + targetUserId))
+        .catch(err => message.channel.send(targetUserId + " is not connected to voice."));
+});
+
+commandManager.addCommand("unmute", true, message => {
+    const targetUserId = message.content.split(" ")[1];
+    const member = commandManager.getMemberByUserId(targetUserId.substring(3, targetUserId.length - 1), message.guild);
+
+    member.setMute(false)
+        .then(response => message.channel.send("Unmuted " + targetUserId))
+        .catch(err => message.channel.send(targetUserId + " is not connected to voice."));
+});
+
+client.on("message", message => {
+    commandManager.onMessage(message);
+});
+
+client.login(TOKEN);
 
 //-------------------EXAMPLE---------------------
